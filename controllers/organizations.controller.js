@@ -8,10 +8,14 @@ const NewOrganization = async (req, res) => {
         error: err,
       });
     }
-    return res.status(200).send({ 
-      organization: newOrganization }).json({
-      success: "New Organization add successfully!!!",
-    });
+    return res
+      .status(200)
+      .send({
+        organization: newOrganization,
+      })
+      .json({
+        success: "New Organization add successfully!!!",
+      });
   });
 };
 
