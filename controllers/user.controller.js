@@ -101,7 +101,7 @@ const UpdateProfile = async (req, res) => {
 
 const ProfileDelete = async (req, res) => {
   try {
-    const userId = req.logedUser._id;
+    const userId = req.logedUser.id;
 
     const deletedUser = await User.findByIdAndDelete(userId);
 
