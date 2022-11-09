@@ -16,6 +16,6 @@ UserRouter.post("/registeruser", RegisterUser);
 UserRouter.post("/login", LoginUser);
 UserRouter.get("/userprofile", userauth, GetUserProfile);
 UserRouter.put("/updateuser", userauth, UpdateProfile);
-UserRouter.delete("/deleteuser", ProfileDelete);
+UserRouter.delete("/deleteuser", userauth, ProfileDelete);
 
 module.exports = UserRouter;
