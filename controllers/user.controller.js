@@ -84,18 +84,40 @@ const UpdateProfile = async (req, res) => {
 };
 
 //delete user profile
+// const ProfileDelete = async (req, res) => {
+//   try {
+//     const deleteProfile = await User.findByIdAndDelete(req.params.id);
+//     res.status(200).send({
+//       status: "user deleted",
+//       user: deleteProfile,
+//     });
+//   } catch (error) {
+//     res.status(500).send({
+//       status: "error with id",
+//       error: error.message,
+//     });
+//   }
+// };
+
 const ProfileDelete = async (req, res) => {
   try {
-    const deleteProfile = await User.findByIdAndDelete(req.params.id);
-    res.status(200).send({
-      status: "user deleted",
-      user: deleteProfile,
-    });
-  } catch (error) {
-    res.status(500).send({
-      status: "error with id",
-      error: error.message,
-    });
+    const userId = req.logedUser._id;
+
+    const deletedUser = await User.findByIdAndDelete(userId);
+
+    if (deletedUser) {
+      return res.status(200).send({
+        status: true,
+        message: "User deleted successfully",
+      });
+    } else {
+      return res.status(400).send({
+        status: false,
+        message: "User delete failed",
+      });
+    }
+  } catch (err) {
+    return res.status(500).send({ status: false, message: err.message });
   }
 };
 
