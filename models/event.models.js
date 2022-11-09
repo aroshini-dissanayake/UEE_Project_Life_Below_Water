@@ -29,7 +29,7 @@ const EventSchema = mongoose.Schema({
     required: true,
   },
 
-  description: {
+  eventdescription: {
     type: String,
     required: true,
   },

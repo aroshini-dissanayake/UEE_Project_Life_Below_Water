@@ -4,8 +4,14 @@ const Organizations = require("../models/organizations.models");
 //add new donations
 const NewEvent = async (req, res) => {
   let organizationID = req.params.organizationID;
-  let { eventTitle, venue, eventTime, eventDate, description, eventImage } =
-    req.body;
+  let {
+    eventTitle,
+    venue,
+    eventTime,
+    eventDate,
+    eventdescription,
+    eventImage,
+  } = req.body;
   let date = new Date();
 
   const organization = await Organizations.findById(organizationID);
@@ -19,7 +25,7 @@ const NewEvent = async (req, res) => {
     venue: venue,
     eventTime: eventTime,
     eventDate: eventDate,
-    description: description,
+    eventdescription: eventdescription,
     eventImage: eventImage,
     organizationID: organizationID,
   });
@@ -83,7 +89,8 @@ const GetOneEvent = async (req, res) => {
 const UpdateEvent = async (req, res) => {
   const organizationID = req.params.organizationID;
   const eventID = req.params.eventID;
-  const { eventTitle, venue, eventTime, eventDate, description } = req.body;
+  const { eventTitle, venue, eventTime, eventDate, eventdescription } =
+    req.body;
 
   try {
     const event = await Events.findById(eventID);
@@ -103,7 +110,7 @@ const UpdateEvent = async (req, res) => {
         venue: venue,
         eventTime: eventTime,
         eventDate: eventDate,
-        description: description,
+        eventdescription: eventdescription,
       }
     );
     res
