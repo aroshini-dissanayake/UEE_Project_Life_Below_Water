@@ -21,7 +21,6 @@ const NewEvent = async (req, res) => {
     eventDate: eventDate,
     description: description,
     eventImage: eventImage,
-    date: date.toISOString().slice(0, 10),
     organizationID: organizationID,
   });
 
