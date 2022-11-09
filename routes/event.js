@@ -11,8 +11,8 @@ const {
 
 EventRouter.post("/addevent/:organizationID", NewEvent);
 EventRouter.get("/getallevents", GetAllEvents);
-EventRouter.get("/getoneevent/:organizationID/:eventID", GetOneEvent);
-EventRouter.put("/updateevent/:organizationID/:eventID", UpdateEvent);
-EventRouter.delete("/deleteevent/:organizationID/:eventID", DeleteEvent);
+EventRouter.get("/getoneevent/:eventID", GetOneEvent);
+EventRouter.put("/updateevent/:eventID", UpdateEvent);
+EventRouter.delete("/deleteevent/:eventID", DeleteEvent);
 
 module.exports = EventRouter;
