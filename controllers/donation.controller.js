@@ -6,7 +6,6 @@ const User = require("../models/users.models");
 //add new donations
 const NewDonation = async (req, res) => {
   const user = await User.findById(req.User._id);
-
   let eventID = req.params.eventID;
   let { amount, donatorName, paymenttype, depositeDate, receipt } = req.body;
 
@@ -20,6 +19,7 @@ const NewDonation = async (req, res) => {
   }
 
   let donation = new Donations({
+    userID: req.User._id,
     amount: amount,
     donatorName: donatorName,
     paymenttype: paymenttype,

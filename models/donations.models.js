@@ -33,6 +33,10 @@ const DonationsSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  userID: {
+    type: String,
+    required: true,
+  },
 });
 
 const Donations = mongoose.model("donations", DonationsSchema);
