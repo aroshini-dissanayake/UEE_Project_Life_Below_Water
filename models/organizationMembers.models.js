@@ -4,6 +4,10 @@ const OrganizationMembersSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  organizationName: {
+    type: String,
+    required: true,
+  },
 
   name: {
     type: String,

@@ -17,13 +17,15 @@ const AddMember = async (req, res) => {
       throw new Error("There is no user");
     }
 
-    const member1 = await OrganizationMembers.find({ user_id: req.User._id });
-    if (member1) {
-      throw new Error("User already exists");
-    }
+    // const member1 = await OrganizationMembers.find({ user_id: req.User._id });
+
+    // if (member1) {
+    //   throw new Error("User already exists");
+    // }
 
     const member = {
       organizationID: organization1._id,
+      organizationName: organization1.organizationName,
       name: user.name,
       user_id: user._id,
     };
