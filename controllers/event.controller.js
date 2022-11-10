@@ -68,7 +68,7 @@ const GetOneEvent = async (req, res) => {
       throw new Error("There is no event");
     }
 
-    const events = await Events.find({ eventID: eventID });
+    const events = await Events.find({ _id: eventID });
 
     //console.log(ratings);
     res.status(200).send({ events: events });
