@@ -36,7 +36,7 @@ const NewDonation = async (req, res) => {
       });
     }
     return res.status(200).json({
-      success: "New Card Added Successfully !!",
+      success: "New Donations Added Successfully !!",
     });
   });
 };
