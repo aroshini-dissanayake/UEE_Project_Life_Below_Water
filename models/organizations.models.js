@@ -14,20 +14,6 @@ const OrganizationsSchema = mongoose.Schema({
     type: String,
     required: false,
   },
-
-  organizationMembers: [
-    {
-      user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: "user",
-      },
-      name: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
 });
 
 const Organizations = mongoose.model("organizations", OrganizationsSchema);
