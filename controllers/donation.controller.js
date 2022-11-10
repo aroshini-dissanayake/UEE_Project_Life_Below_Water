@@ -5,12 +5,18 @@ const User = require("../models/users.models");
 
 //add new donations
 const NewDonation = async (req, res) => {
+  const user = await User.findById(req.User._id);
+
   let eventID = req.params.eventID;
   let { amount, donatorName, paymenttype, depositeDate, receipt } = req.body;
 
   const event = await Events.findById(eventID);
   if (!event) {
     throw new Error("There is no event");
+  }
+
+  if (!user) {
+    throw new Error("There is no user");
   }
 
   let donation = new Donations({

@@ -9,7 +9,7 @@ const {
 } = require("../controllers/donation.controller");
 const userauth = require("../middleware/userauth");
 
-DonationRouter.post("/adddonation/:eventID", NewDonation);
+DonationRouter.post("/adddonation/:eventID", userauth, NewDonation);
 DonationRouter.get("/getdonation", GetDonations);
 DonationRouter.put("/updatedonation/:donationID", userauth, UpdateDonation);
 DonationRouter.delete("/deletedonation/:donationID", DeleteDonation);
