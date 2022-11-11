@@ -11,7 +11,7 @@ const UserBlogsSchema = mongoose.Schema({
     required: true,
   },
 
-  blogImage: {
+  blogImagea: {
     type: String,
     required: false,
   },
