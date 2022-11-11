@@ -8,6 +8,7 @@ const DonationRouter = require("./routes/donations");
 const UserRouter = require("./routes/users");
 const OrganizationRouter = require("./routes/organizations");
 const BlogRouter = require("./routes/blogs");
+const UserBlogRouter = require("./routes/userblogs");
 const EventRouter = require("./routes/event");
 
 const app = express();
@@ -21,6 +22,7 @@ app.use("/api/donation", DonationRouter);
 app.use("/api/user", UserRouter);
 app.use("/api/organization", OrganizationRouter);
 app.use("/api/blog", BlogRouter);
+app.use("/api/userblog", UserBlogRouter);
 app.use("/api/event", EventRouter);
 
 app.listen(PORT, () => {
