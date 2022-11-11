@@ -24,7 +24,7 @@ const NewDonation = async (req, res) => {
     donatorName: donatorName,
     paymenttype: paymenttype,
     depositeDate: depositeDate,
-    receipt: receipt,
+    // receipt: receipt,
     eventID: eventID,
     eventTitle: event.eventTitle,
   });
@@ -95,7 +95,7 @@ const UpdateDonation = async (req, res) => {
         amount: amount,
         donatorName: donatorName,
         depositeDate: depositeDate,
-        receipt: receipt,
+        // receipt: receipt,
       }
     );
     res.status(200).send({

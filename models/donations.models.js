@@ -31,7 +31,6 @@ const DonationsSchema = mongoose.Schema({
 
   receipt: {
     type: String,
-    required: true,
   },
   userID: {
     type: String,
