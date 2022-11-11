@@ -3,7 +3,7 @@ const User = require("../models/users.models");
 //user register
 const RegisterUser = async (req, res) => {
   try {
-    const { name, email, phoneNumber, password } = req.body;
+    const { name, email, phoneNumber, password, role } = req.body;
     const existingUser = await User.findOne({ email: email });
 
     if (existingUser) {
@@ -15,6 +15,7 @@ const RegisterUser = async (req, res) => {
       email,
       phoneNumber,
       password,
+      role,
     };
 
     const newuser = new User(createdUser);
@@ -35,7 +36,10 @@ const LoginUser = async (req, res) => {
     const { email, password } = req.body;
     const User_s = await User.findByCredentials(email, password);
     const token = await User_s.generateAuthToken();
-    res.status(200).send({ token: token, User_s: User_s });
+    res.status(200).send({
+      token: token,
+      role: User_s.role,
+    });
   } catch (error) {
     res.status(500).send({ error: error.message });
     console.log(error);
@@ -82,7 +86,9 @@ const UpdateProfile = async (req, res) => {
 //delete user profile
 const ProfileDelete = async (req, res) => {
   try {
-    const deleteProfile = await User.findByIdAndDelete(req.params.id);
+    const LogUser = req.User;
+    console.log(LogUser);
+    const deleteProfile = await User.findByIdAndDelete(LogUser._id);
     res.status(200).send({
       status: "user deleted",
       user: deleteProfile,

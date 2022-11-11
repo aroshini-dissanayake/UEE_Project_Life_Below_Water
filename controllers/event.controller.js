@@ -4,8 +4,14 @@ const Organizations = require("../models/organizations.models");
 //add new donations
 const NewEvent = async (req, res) => {
   let organizationID = req.params.organizationID;
-  let { eventTitle, venue, eventTime, eventDate, description, eventImage } =
-    req.body;
+  let {
+    eventTitle,
+    venue,
+    eventTime,
+    eventDate,
+    eventdescription,
+    eventImage,
+  } = req.body;
   let date = new Date();
 
   const organization = await Organizations.findById(organizationID);
@@ -19,9 +25,8 @@ const NewEvent = async (req, res) => {
     venue: venue,
     eventTime: eventTime,
     eventDate: eventDate,
-    description: description,
+    eventdescription: eventdescription,
     eventImage: eventImage,
-    date: date.toISOString().slice(0, 10),
     organizationID: organizationID,
   });
 
@@ -55,7 +60,6 @@ const GetAllEvents = async (req, res) => {
 //get specific events
 const GetOneEvent = async (req, res) => {
   const eventID = req.params.eventID;
-  const organizationID = req.params.organizationID;
 
   try {
     // validate product
@@ -64,11 +68,7 @@ const GetOneEvent = async (req, res) => {
       throw new Error("There is no event");
     }
 
-    const organization = await Organizations.findById(organizationID);
-    if (!organization) {
-      throw new Error("There is no organization");
-    }
-    const events = await Events.find({ organizationID: organizationID });
+    const events = await Events.find({ _id: eventID });
 
     //console.log(ratings);
     res.status(200).send({ events: events });
@@ -82,19 +82,14 @@ const GetOneEvent = async (req, res) => {
 
 //update an event
 const UpdateEvent = async (req, res) => {
-  const organizationID = req.params.organizationID;
   const eventID = req.params.eventID;
-  const { eventTitle, venue, eventTime, eventDate, description } = req.body;
+  const { eventTitle, venue, eventTime, eventDate, eventdescription } =
+    req.body;
 
   try {
     const event = await Events.findById(eventID);
     if (!event) {
       throw new Error("There is no event");
-    }
-
-    const organization = await Organizations.findById(organizationID);
-    if (!organization) {
-      throw new Error("There is no organization");
     }
 
     const updateEvent = await Events.findOneAndUpdate(
@@ -104,7 +99,7 @@ const UpdateEvent = async (req, res) => {
         venue: venue,
         eventTime: eventTime,
         eventDate: eventDate,
-        description: description,
+        eventdescription: eventdescription,
       }
     );
     res
@@ -118,18 +113,12 @@ const UpdateEvent = async (req, res) => {
 };
 
 const DeleteEvent = async (req, res) => {
-  const organizationID = req.params.organizationID;
   const eventID = req.params.eventID;
 
   try {
     const event = await Events.findById(eventID);
     if (!event) {
       throw new Error("There is no event");
-    }
-
-    const organization = await Organizations.findById(organizationID);
-    if (!organization) {
-      throw new Error("There is no organization");
     }
 
     const deleteEvents = await Events.findByIdAndDelete(eventID);
