@@ -56,6 +56,22 @@ const GetDonations = async (req, res) => {
   });
 };
 
+//getone
+const GetOneOrganization = async (req, res) => {
+  let donationID = req.params.donationID;
+  Donations.findById(donationID, (err, donations) => {
+    if (err) {
+      return res.status(400).json({
+        error: err,
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      existingDonations: donations,
+    });
+  });
+};
+
 //update donations
 const UpdateDonation = async (req, res) => {
   const user = await User.findById(req.User._id);
@@ -115,4 +131,5 @@ module.exports = {
   GetDonations,
   UpdateDonation,
   DeleteDonation,
+  GetOneOrganization,
 };
