@@ -77,7 +77,7 @@ const UpdateDonation = async (req, res) => {
   const user = await User.findById(req.User._id);
 
   const donationID = req.params.donationID;
-  const { donatorName, depositeDate, receipt } = req.body;
+  const { amount, donatorName, depositeDate, receipt } = req.body;
 
   try {
     if (!user) {
@@ -92,6 +92,7 @@ const UpdateDonation = async (req, res) => {
     const updateDonation = await Donations.findOneAndUpdate(
       { _id: donationID },
       {
+        amount: amount,
         donatorName: donatorName,
         depositeDate: depositeDate,
         receipt: receipt,
