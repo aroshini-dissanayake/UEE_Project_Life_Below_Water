@@ -3,7 +3,7 @@ const UserBlogs = require("../models/userblogs.models");
 //add new blog
 const NewUserBlog = async (req, res) => {
     let newuserBlog = new UserBlogs(req.body);
-    newBlog.save((err) => {
+    newuserBlog.save((err) => {
       if (err) {
         return res.status(400).json({
           error: err,
@@ -11,7 +11,7 @@ const NewUserBlog = async (req, res) => {
       }
       return res.status(200).json({
         success: "New Blog add Successfully !!",
-        blog :newuserBlog,
+        UserBlogs :newuserBlog,
        });
       });
   };
